@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const serverless = require('serverless-http');
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,6 +35,9 @@ app.get('/contact', (req, res) => {
 });
 
 // Memulai Server
-app.listen(PORT, () => {
-  console.log(`Server berjalan di http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server berjalan di http://localhost:${PORT}`);
+// });
+
+module.exports = app;
+module.exports.handler = serverless(app);
